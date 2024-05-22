@@ -1,6 +1,7 @@
 package mate.academy.bookapp.repository.impl;
 
 import java.util.List;
+import java.util.Optional;
 import mate.academy.bookapp.exceptions.DataProcessingException;
 import mate.academy.bookapp.model.Book;
 import mate.academy.bookapp.repository.BookRepository;
@@ -38,6 +39,15 @@ public class BookRepositoryImpl implements BookRepository {
             if (session != null) {
                 session.close();
             }
+        }
+    }
+
+    @Override
+    public Optional<Book> findById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return Optional.ofNullable(session.get(Book.class, id));
+        } catch (Exception e) {
+            throw new DataProcessingException("Can`t find the book with id: " + id, e);
         }
     }
 
