@@ -15,7 +15,7 @@ import lombok.ToString;
 @Table(name = "books")
 @Getter
 @Setter
-@ToString(exclude = {"description", "coverImage"})
+@ToString
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

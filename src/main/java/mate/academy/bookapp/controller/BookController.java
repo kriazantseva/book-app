@@ -1,10 +1,10 @@
 package mate.academy.bookapp.controller;
 
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import mate.academy.bookapp.dto.BookDto;
 import mate.academy.bookapp.dto.CreateBookRequestDto;
 import mate.academy.bookapp.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/books")
+@RequestMapping("/books")
+@RequiredArgsConstructor
 public class BookController {
-    @Autowired
-    private BookService bookService;
+    private final BookService bookService;
 
     @GetMapping
     public List<BookDto> getAll() {
